@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.db import IntegrityError, transaction
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
-from .forms import AttendanceForm, StudentForm
+from .forms import AttendanceForm, BatchForm, StudentForm
 from .models import Attendance, Batch, Student
 
 
@@ -29,6 +29,21 @@ def student_list(request):
 def batch_list(request):
     batches = Batch.objects.order_by('name')
     return render(request, 'sms/batch_list.html', {'batches': batches})
+
+
+def add_batch(request):
+    if request.method == 'POST':
+        form = BatchForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Batch added successfully.')
+            if 'add_another' in request.POST:
+                return redirect('add_batch')
+            return redirect('batch_list')
+    else:
+        form = BatchForm()
+
+    return render(request, 'sms/add_batch.html', {'form': form})
 
 
 def take_attendance(request, batch_id):

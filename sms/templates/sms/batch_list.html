@@ -14,7 +14,10 @@
                 <p class="eyebrow">EduTrack</p>
                 <h1>Batches</h1>
             </div>
-            <a class="button button-secondary" href="{% url 'student_list' %}">View students</a>
+            <nav class="actions">
+                <a class="button" href="{% url 'add_batch' %}">Add batch</a>
+                <a class="button button-secondary" href="{% url 'student_list' %}">View students</a>
+            </nav>
         </header>
         {% for message in messages %}
             <p class="message">{{ message }}</p>

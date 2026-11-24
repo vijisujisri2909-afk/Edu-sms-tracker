@@ -1,5 +1,14 @@
 from django import forms
-from .models import Attendance, Student
+from .models import Attendance, Batch, Student
+
+
+class BatchForm(forms.ModelForm):
+    class Meta:
+        model = Batch
+        fields = ['name', 'start_date']
+        widgets = {
+            'start_date': forms.DateInput(attrs={'type': 'date'}),
+        }
 
 
 class StudentForm(forms.ModelForm):

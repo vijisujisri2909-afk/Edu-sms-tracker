@@ -1,0 +1,34 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add batch</title>
+    <link rel="stylesheet" href="{% static 'sms/style.css' %}">
+</head>
+<body>
+    <main class="page page-narrow">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">EduTrack</p>
+                <h1>Add batch</h1>
+            </div>
+            <a class="button button-secondary" href="{% url 'batch_list' %}">Back to batches</a>
+        </header>
+        {% for message in messages %}
+            <p class="message">{{ message }}</p>
+        {% endfor %}
+        <section class="panel">
+            <form class="student-form" method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="actions">
+                    <button type="submit">Save batch</button>
+                    <button type="submit" name="add_another" value="1">Save and add another</button>
+                </div>
+            </form>
+        </section>
+    </main>
+</body>
+</html>
