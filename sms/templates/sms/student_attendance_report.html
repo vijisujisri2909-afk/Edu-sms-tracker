@@ -1,0 +1,53 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Attendance history - {{ student }}</title>
+    <link rel="stylesheet" href="{% static 'sms/style.css' %}">
+</head>
+<body>
+    <main class="page">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">{{ student.batch.name }}</p>
+                <h1>{{ student.first_name }} {{ student.last_name }}</h1>
+                <p class="subtitle">Attendance history</p>
+            </div>
+            <nav class="actions">
+                <a class="button button-secondary" href="{% url 'student_list' %}">Back to students</a>
+                <a class="button button-secondary" href="{% url 'attendance_report' student.batch.pk %}">
+                    Batch summary
+                </a>
+            </nav>
+        </header>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in attendance_records %}
+                        <tr>
+                            <td>{{ record.date }}</td>
+                            <td>
+                                <span class="status status-{{ record.status|lower }}">
+                                    {{ record.get_status_display }}
+                                </span>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td class="empty-state" colspan="2">No attendance records yet.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+</body>
+</html>

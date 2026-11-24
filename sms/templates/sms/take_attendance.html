@@ -1,0 +1,44 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Take attendance</title>
+    <link rel="stylesheet" href="{% static 'sms/style.css' %}">
+</head>
+<body>
+    <main class="page page-narrow">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">{{ batch.name }}</p>
+                <h1>Take attendance</h1>
+            </div>
+            <a class="button button-secondary" href="{% url 'batch_list' %}">Back to batches</a>
+        </header>
+        {% for message in messages %}
+            <p class="message">{{ message }}</p>
+        {% endfor %}
+
+        <section class="panel">
+        {% if attendance_exists %}
+            <p class="notice">Attendance for this batch has already been recorded today.</p>
+        {% elif student_forms %}
+            <form class="attendance-form" method="post">
+                {% csrf_token %}
+                {% for student, form in student_forms %}
+                    <fieldset class="student-attendance">
+                        <legend>{{ student.first_name }} {{ student.last_name }}</legend>
+                        {{ form.status.errors }}
+                        {{ form.status }}
+                    </fieldset>
+                {% endfor %}
+                <button type="submit">Save attendance</button>
+            </form>
+        {% else %}
+            <p class="empty-state">This batch has no students to mark.</p>
+        {% endif %}
+        </section>
+    </main>
+</body>
+</html>

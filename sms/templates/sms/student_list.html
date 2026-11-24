@@ -1,0 +1,52 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Students</title>
+    <link rel="stylesheet" href="{% static 'sms/style.css' %}">
+</head>
+<body>
+    <main class="page">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">EduTrack</p>
+                <h1>Students</h1>
+            </div>
+            <nav class="actions">
+                <a class="button" href="{% url 'register_student' %}">Register a student</a>
+                <a class="button button-secondary" href="{% url 'batch_list' %}">View batches</a>
+            </nav>
+        </header>
+        <div class="table-wrap">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Batch</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'student_attendance_report' student.pk %}">
+                                {{ student.first_name }} {{ student.last_name }}
+                            </a>
+                        </td>
+                        <td>{{ student.email }}</td>
+                        <td>{{ student.batch.name }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td class="empty-state" colspan="3">No students registered yet.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    </main>
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register student</title>
+    <link rel="stylesheet" href="{% static 'sms/style.css' %}">
+</head>
+<body>
+    <main class="page page-narrow">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">EduTrack</p>
+                <h1>Register student</h1>
+            </div>
+            <a class="button button-secondary" href="{% url 'student_list' %}">Back to students</a>
+        </header>
+        <section class="panel">
+        <form class="student-form" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Register student</button>
+        </form>
+        </section>
+    </main>
+</body>
+</html>

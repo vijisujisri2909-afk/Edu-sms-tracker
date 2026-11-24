@@ -1,0 +1,294 @@
+:root {
+    color-scheme: light;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #172033;
+    background: #f3f6fb;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+}
+
+a {
+    color: #2457c5;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.page {
+    width: min(100% - 2rem, 1100px);
+    margin: 0 auto;
+    padding: 3rem 0;
+}
+
+.page-narrow {
+    max-width: 720px;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+h1,
+h2,
+p {
+    margin-top: 0;
+}
+
+h1 {
+    margin-bottom: 0;
+    font-size: clamp(1.75rem, 4vw, 2.4rem);
+    letter-spacing: -0.035em;
+}
+
+h2 {
+    margin-bottom: 0.3rem;
+    font-size: 1.1rem;
+}
+
+.eyebrow {
+    margin-bottom: 0.4rem;
+    color: #62718b;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.subtitle,
+.batch-card p {
+    margin: 0.45rem 0 0;
+    color: #62718b;
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.7rem;
+}
+
+.button,
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.65rem;
+    padding: 0.65rem 1rem;
+    border: 1px solid #2457c5;
+    border-radius: 0.55rem;
+    background: #2457c5;
+    color: #fff;
+    font: inherit;
+    font-weight: 650;
+    cursor: pointer;
+}
+
+.button:hover,
+button:hover {
+    background: #1946a7;
+    color: #fff;
+    text-decoration: none;
+}
+
+.button-secondary {
+    border-color: #d7dfeb;
+    background: #fff;
+    color: #263650;
+}
+
+.button-secondary:hover {
+    background: #f7f9fc;
+    color: #172033;
+}
+
+.button-small {
+    min-height: 2rem;
+    margin: 0.15rem;
+    padding: 0.4rem 0.65rem;
+    font-size: 0.82rem;
+}
+
+.muted {
+    color: #62718b;
+}
+
+.panel,
+.table-wrap,
+.batch-card {
+    overflow: hidden;
+    border: 1px solid #e1e7f0;
+    border-radius: 0.85rem;
+    background: #fff;
+    box-shadow: 0 8px 25px rgb(23 32 51 / 5%);
+}
+
+.panel {
+    padding: 1.5rem;
+}
+
+.student-form p {
+    display: grid;
+    gap: 0.45rem;
+    margin-bottom: 1.1rem;
+}
+
+input,
+select {
+    width: 100%;
+    min-height: 2.7rem;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid #cbd5e3;
+    border-radius: 0.45rem;
+    background: #fff;
+    color: inherit;
+    font: inherit;
+}
+
+input:focus,
+select:focus {
+    border-color: #2457c5;
+    outline: 3px solid rgb(36 87 197 / 15%);
+}
+
+.attendance-form {
+    display: grid;
+    gap: 0.85rem;
+}
+
+.student-attendance {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0;
+    padding: 0.9rem 1rem;
+    border: 1px solid #e1e7f0;
+    border-radius: 0.6rem;
+}
+
+.student-attendance legend {
+    padding: 0;
+    font-weight: 650;
+}
+
+.student-attendance select {
+    width: min(100%, 12rem);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.data-table th,
+.data-table td {
+    padding: 0.95rem 1.1rem;
+    border-bottom: 1px solid #e9edf4;
+}
+
+.data-table th {
+    background: #f8faff;
+    color: #586780;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.status {
+    display: inline-flex;
+    min-width: 2.2rem;
+    justify-content: center;
+    padding: 0.3rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.86rem;
+    font-weight: 700;
+}
+
+.status-present {
+    background: #e3f6eb;
+    color: #187443;
+}
+
+.status-absent {
+    background: #fde9e8;
+    color: #b42318;
+}
+
+.status-late {
+    background: #fff2d6;
+    color: #8a5700;
+}
+
+.batch-list {
+    display: grid;
+    gap: 0.85rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.batch-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.2rem 1.35rem;
+}
+
+.empty-state {
+    padding: 1.5rem !important;
+    color: #62718b;
+    text-align: center;
+}
+
+.message,
+.notice {
+    margin-bottom: 1rem;
+    padding: 0.85rem 1rem;
+    border-radius: 0.55rem;
+    background: #fff2d6;
+    color: #704900;
+}
+
+.errorlist {
+    margin: 0;
+    color: #b42318;
+}
+
+@media (max-width: 650px) {
+    .page {
+        padding: 1.5rem 0;
+    }
+
+    .page-header,
+    .batch-card {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 0.75rem 0.65rem;
+    }
+}

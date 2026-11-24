@@ -1,0 +1,40 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Batches</title>
+    <link rel="stylesheet" href="{% static 'sms/style.css' %}">
+</head>
+<body>
+    <main class="page">
+        <header class="page-header">
+            <div>
+                <p class="eyebrow">EduTrack</p>
+                <h1>Batches</h1>
+            </div>
+            <a class="button button-secondary" href="{% url 'student_list' %}">View students</a>
+        </header>
+        {% for message in messages %}
+            <p class="message">{{ message }}</p>
+        {% endfor %}
+        <ul class="batch-list">
+            {% for batch in batches %}
+                <li class="batch-card">
+                    <div>
+                        <h2>{{ batch.name }}</h2>
+                        <p>Started {{ batch.start_date }}</p>
+                    </div>
+                    <nav class="actions">
+                        <a href="{% url 'take_attendance' batch.pk %}">Take attendance</a>
+                        <a href="{% url 'attendance_report' batch.pk %}">Attendance report</a>
+                    </nav>
+                </li>
+            {% empty %}
+                <li class="empty-state">No batches have been created yet.</li>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>
